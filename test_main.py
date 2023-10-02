@@ -1,5 +1,4 @@
 
-import main
 import subprocess
 
 def test_main():
