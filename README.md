@@ -1,38 +1,41 @@
-## SQLite Lab
+# SQLite Project | Load, Transform, Query, and run CRUD operations on Data
 
-### Lab:
+This project demonstrates a robust data pipeline using SQLite, encompassing data loading, transformation, querying, and CRUD (Create, Read, Update, Delete) operations. The project is set up to run Continuous Integration and Continuous Deployment (CI/CD) pipelines, automating various database operations with each push to the repository. Additionally, it provides the flexibility to execute queries via the command line interface (CLI) with optional query output, allowing for efficient data analysis and management.
 
-* Use an AI Assistant, but use a different one then you used from a previous lab (Anthropic's Claud, Bard, Copilot, CodeWhisperer, Colab AI, etc)
-* ETL-Query:  [E] Extract a dataset from URL, [T] Transform, [L] Load into SQLite Database and [Q] Query
-For the ETL-Query lab:
-* [E] Extract a dataset from a URL like Kaggle or data.gov. JSON or CSV formats tend to work well.
-* [T] Transform the data by cleaning, filtering, enriching, etc to get it ready for analysis.
-* [L] Load the transformed data into a SQLite database table using Python's sqlite3 module.
-* [Q] Write and execute SQL queries on the SQLite database to analyze and retrieve insights from the data.
-
-#### Tasks:
-
-* Fork this project and get it to run
-* Make the query more useful and not a giant mess that prints to screen
-* Convert the main.py into a command-line tool that lets you run each step independantly
-* Fork this project and do the same thing for a new dataset you choose
-* Make sure your project passes lint/tests and has a built badge
-* Include an architectural diagram showing how the project works
-
-#### Reflection Questions
-
-* What challenges did you face when extracting, transforming, and loading the data? How did you overcome them?
-* What insights or new knowledge did you gain from querying the SQLite database?
-* How can SQLite and SQL help make data analysis more efficient? What are the limitations?
-* What AI assistant did you use and how did it compare to others you've tried? What are its strengths and weaknesses?
-* If you could enhance this lab, what would you add or change? What other data would be interesting to load and query?
-
-##### Challenge Exercises
-
-* Add more transformations to the data before loading it into SQLite. Ideas: join with another dataset, aggregate by categories, normalize columns.
-* Write a query to find correlated fields in the data. Print the query results nicely formatted.
-* Create a second table in the SQLite database and write a join query with the two tables.
-* Build a simple Flask web app that runs queries on demand and displays results.
-* Containerize the application using Docker so the database and queries can be portable
+![Alt Text](pipeline.png)
 
 
+## Features
+
+- Load external data into an SQLite database.
+- Transform and clean data for analysis.
+- Execute SQL queries for data analysis.
+- Implement CRUD operations (Create, Read, Update, Delete) for database records.
+- Automate data pipeline operations with CI/CD.
+
+## Usage
+
+### Running the Pipeline
+
+To execute the data pipeline, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Run the data pipeline using in the main.py script with or without the --query flag on the CL the appropriate command.
+
+### Executing Queries
+
+The project allows you to execute SQL queries and view the results. You can use the `--query` flag followed by your SQL query to include the query result in the output.
+
+This command will execute the specified SQL query and display the result.
+
+## CI/CD
+
+The project is set up with Continuous Integration and Continuous Deployment (CI/CD) pipelines. With each push to the repository, the following operations are performed automatically:
+
+1. Data loading into the SQLite database.
+2. Data transformation and cleaning.
+3. SQL queries execution.
+4. Logging the output of the operations.
+
+The output of the operations, including any query results and CRUD actions, is automatically saved to the `output.txt` file for reference.
