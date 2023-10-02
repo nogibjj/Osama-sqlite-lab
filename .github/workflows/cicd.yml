@@ -19,6 +19,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+          node-version: ${{ matrix.node-version }}
       - name: install packages
         run: make install
       - name: lint
