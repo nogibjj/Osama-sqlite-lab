@@ -4,7 +4,13 @@ def create_table():
     """Create the GroceryDB table"""
     conn = sqlite3.connect("GroceryDB.db")
     cursor = conn.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS GroceryDB (id INTEGER PRIMARY KEY AUTOINCREMENT, general_name TEXT NOT NULL, count_products INTEGER NOT NULL, ingred_FPro REAL NOT NULL, avg_FPro_products REAL NOT NULL, avg_distance_root REAL NOT NULL, ingred_normalization_term REAL NOT NULL, semantic_tree_name TEXT NOT NULL, semantic_tree_node TEXT NOT NULL)")
+    cursor.execute("""CREATE TABLE IF NOT EXISTS
+                    GroceryDB (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    general_name TEXT NOT NULL, count_products INTEGER
+                    NOT NULL, ingred_FPro REAL NOT NULL, avg_FPro_products
+                    REAL NOT NULL, avg_distance_root REAL NOT NULL,
+                    ingred_normalization_term REAL NOT NULL, semantic_tree_name
+                    TEXT NOT NULL, semantic_tree_node TEXT NOT NULL)""")
     cursor.execute("PRAGMA table_info(GroceryDB);")
     results = cursor.fetchall()
     column_names = [result[1] for result in results]
@@ -13,13 +19,23 @@ def create_table():
     conn.close()
 
 
-def create(general_name, count_products, ingred_FPro, avg_FPro_products, avg_distance_root, ingred_normalization_term, semantic_tree_name, semantic_tree_node):
+def create(general_name, count_products,
+            ingred_FPro, avg_FPro_products,
+              avg_distance_root, ingred_normalization_term,
+                semantic_tree_name, semantic_tree_node):
     """Insert a new item into the GroceryDB table"""
     conn = sqlite3.connect("GroceryDB.db")
     cursor = conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM GroceryDB")
     id = cursor.fetchone()[0] + 1
-    cursor.execute("INSERT INTO GroceryDB (id, general_name, count_products, ingred_FPro, avg_FPro_products, avg_distance_root, ingred_normalization_term, semantic_tree_name, semantic_tree_node) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (id, general_name, count_products, ingred_FPro, avg_FPro_products, avg_distance_root, ingred_normalization_term, semantic_tree_name, semantic_tree_node))
+    cursor.execute("""INSERT INTO GroceryDB (id, general_name, count_products,
+                    ingred_FPro, avg_FPro_products, avg_distance_root, 
+                   ingred_normalization_term, semantic_tree_name,
+                    semantic_tree_node) VALUES (?, ?, ?, ?, ?, ?, ?, ?,
+                    ?)""", (id, general_name, count_products, ingred_FPro,
+                             avg_FPro_products, avg_distance_root,
+                               ingred_normalization_term, semantic_tree_name,
+                                 semantic_tree_node))
     conn.commit()
     conn.close()
 
@@ -36,11 +52,23 @@ def read():
         print(row)
 
 
-def update(id, general_name, count_products, ingred_FPro, avg_FPro_products, avg_distance_root, ingred_normalization_term, semantic_tree_name, semantic_tree_node):
+def update(id, general_name,
+            count_products, ingred_FPro,
+              avg_FPro_products, avg_distance_root,
+                ingred_normalization_term, semantic_tree_name,
+                  semantic_tree_node):
     """Update an item in the GroceryDB table"""
     conn = sqlite3.connect("GroceryDB.db")
     cursor = conn.cursor()
-    cursor.execute("UPDATE GroceryDB SET general_name=?, count_products=?, ingred_FPro=?, avg_FPro_products=?, avg_distance_root=?, ingred_normalization_term=?, semantic_tree_name=?, semantic_tree_node=? WHERE id=?", (general_name, count_products, ingred_FPro, avg_FPro_products, avg_distance_root, ingred_normalization_term, semantic_tree_name, semantic_tree_node, id))
+    cursor.execute("""UPDATE GroceryDB SET general_name=?,
+                    count_products=?, ingred_FPro=?,
+                    avg_FPro_products=?, avg_distance_root=?,
+                    ingred_normalization_term=?, semantic_tree_name=?,
+                    semantic_tree_node=? WHERE id=?""",
+                      (general_name, count_products,
+                        ingred_FPro, avg_FPro_products,
+                          avg_distance_root, ingred_normalization_term,
+                            semantic_tree_name, semantic_tree_node, id))
     conn.commit()
     conn.close()
 
@@ -58,7 +86,9 @@ def get_database_dimensions():
     """Get the number of rows and columns in the GroceryDB table"""
     conn = sqlite3.connect("GroceryDB.db")
     cursor = conn.cursor()
-    cursor.execute("SELECT COUNT(*) AS num_rows, COUNT(*) * (SELECT COUNT(*) FROM pragma_table_info('GroceryDB')) AS num_cols FROM GroceryDB")
+    cursor.execute("""SELECT COUNT(*) AS num_rows, COUNT(*) * (SELECT COUNT(*)
+                    FROM pragma_table_info('GroceryDB'))
+                    AS num_cols FROM GroceryDB""")
     result = cursor.fetchone()
     conn.close()
     if result:
