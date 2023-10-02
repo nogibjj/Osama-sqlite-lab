@@ -26,6 +26,11 @@ import argparse
 from mylib.extract import extract
 from mylib.transform_load import load
 from mylib.query import query
+from mylib.CRUD import get_database_dimensions
+from mylib.CRUD import create
+from mylib.CRUD import read
+from mylib.CRUD import update
+from mylib.CRUD import delete
 
 
 def main(args):
@@ -37,6 +42,15 @@ def main(args):
     print("Transforming data...")
     load()
 
+    # CRUD, Create an entry
+    # Update the entry
+    # Delete the entry
+    # Read the database
+    create("Eggs", 10, 0.5, 0.2, 0.1, 0.3, "Tree1", "Node1")
+    last_id = get_database_dimensions()[0]
+    update(last_id, "Eggs", 20, 0.5, 0.2, 0.1, 0.3, "Tree1", "Node1")
+    delete(last_id)
+    read() 
     # Query
     if args.query:
         print("Querying data...")
