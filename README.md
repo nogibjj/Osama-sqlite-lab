@@ -1,3 +1,5 @@
+[![CI](https://github.com/nogibjj/SQL-Database-Operations-with-Python-Script-Osama/actions/workflows/cicd.yml/badge.svg)](https://github.com/nogibjj/SQL-Database-Operations-with-Python-Script-Osama/actions/workflows/cicd.yml)
+
 # SQLite Project | Load, Transform, Query, and run CRUD operations on Data
 
 This project demonstrates a robust data pipeline using SQLite, encompassing data loading, transformation, querying, and CRUD (Create, Read, Update, Delete) operations. The project is set up to run Continuous Integration and Continuous Deployment (CI/CD) pipelines, automating various database operations with each push to the repository. Additionally, it provides the flexibility to execute queries via the command line interface (CLI) with optional query output, allowing for efficient data analysis and management.
